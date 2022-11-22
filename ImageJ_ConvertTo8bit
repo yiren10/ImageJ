@@ -1,0 +1,32 @@
+//After imaging, 
+//convert channel 3/4 to 8 bit raw tiff files
+//total files in one folder: 31
+
+for (i = 1; i <32; i++) {
+
+Img_Batch="...Scan Name..._"+toString(i);
+
+//Open the file link:
+
+open("E:/...."+Img_Batch+".tif");
+selectWindow(Img_Batch+".tif");
+run("Stack to Images");
+
+//
+selectWindow(Img_Batch+"-0003");
+setOption("ScaleConversions", true);
+run("8-bit");
+saveAs("Tiff", "E:/......"+Img_Batch+"-0003.tif");
+selectWindow(Img_Batch+"-0004");
+setOption("ScaleConversions", true);
+run("8-bit");
+saveAs("Tiff", "E:/......"+Img_Batch+"-0004.tif");
+selectWindow(Img_Batch+"-0001");
+close();
+selectWindow(Img_Batch+"-0002");
+close();
+selectWindow(Img_Batch+"-0003.tif");
+close();
+selectWindow(Img_Batch+"-0004.tif");
+close();
+}
